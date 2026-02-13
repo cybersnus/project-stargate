@@ -251,8 +251,8 @@ export function useAmbientSound() {
       const gainNode = ctx.createGain();
       const now = ctx.currentTime;
       gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.4, now + 0.1);
-      gainNode.gain.setValueAtTime(0.4, now + segmentDuration - 0.2);
+      gainNode.gain.linearRampToValueAtTime(0.32, now + 0.1); // 0.4 * 0.8 = 0.32 (20% lower)
+      gainNode.gain.setValueAtTime(0.32, now + segmentDuration - 0.2);
       gainNode.gain.linearRampToValueAtTime(0, now + segmentDuration);
 
       source.connect(gainNode);

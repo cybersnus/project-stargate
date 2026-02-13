@@ -37,8 +37,10 @@ export function Layout() {
     return () => clearTimeout(timeoutId);
   }, [triggerGlitch]);
 
-  // Random Russian radio transmission every 30-60 seconds
+  // Random Russian radio transmission every 30-60 seconds (only when ambient enabled)
   useEffect(() => {
+    if (!ambientEnabled) return;
+
     const scheduleNextTransmission = () => {
       const delay = 30000 + Math.random() * 30000; // 30-60 seconds
       return setTimeout(() => {
@@ -49,7 +51,7 @@ export function Layout() {
 
     const timeoutId = scheduleNextTransmission();
     return () => clearTimeout(timeoutId);
-  }, [playRadioTransmission]);
+  }, [playRadioTransmission, ambientEnabled]);
 
   const handleNavClick = () => {
     playSound('click');
